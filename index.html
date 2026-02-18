@@ -9,6 +9,8 @@
     <meta property="og:description" content="비트코인 200주 이동평균선 터치 시 수익률 백테스트">
     <meta property="og:type" content="website">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -470,6 +472,7 @@
                 <button class="period-btn" data-period="156">3Y</button>
                 <button class="period-btn" data-period="260">5Y</button>
                 <button class="period-btn active" data-period="0">ALL</button>
+                <button class="period-btn" id="resetZoomBtn" style="margin-left:10px; display:none;" onclick="resetZoom()">Reset Zoom</button>
             </div>
             <div class="chart-container">
                 <canvas id="mainChart"></canvas>
@@ -736,9 +739,24 @@
                                     return ` ${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
                                 }
                             }
+                        },
+                        zoom: {
+                            pan: {
+                                enabled: true,
+                                mode: 'x',
+                                onPan: () => { document.getElementById('resetZoomBtn').style.display = 'inline-block'; }
+                            },
+                            zoom: {
+                                wheel: { enabled: true },
+                                pinch: { enabled: true },
+                                mode: 'x',
+                                onZoom: () => { document.getElementById('resetZoomBtn').style.display = 'inline-block'; }
+                            },
+                            limits: {
+                                x: { minRange: 20 }
+                            }
                         }
                     },
-                    scales: {
                         x: {
                             grid: { color: 'rgba(255,255,255,0.04)' },
                             ticks: {
@@ -768,6 +786,13 @@
                     }
                 }
             });
+        }
+
+        function resetZoom() {
+            if (mainChart) {
+                mainChart.resetZoom();
+                document.getElementById('resetZoomBtn').style.display = 'none';
+            }
         }
 
         // ============================================================
@@ -871,6 +896,7 @@
                 btn.classList.add('active');
                 currentPeriod = parseInt(btn.dataset.period);
                 createMainChart(currentPeriod);
+                document.getElementById('resetZoomBtn').style.display = 'none';
             });
         });
 
