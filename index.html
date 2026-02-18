@@ -636,33 +636,22 @@
             const totalWeeks = filteredDates.length;
 
             function getTickCallback(total) {
-                if (total <= 170) {
-                    return function(val, idx) {
-                        const d = this.getLabelForValue(val);
-                        if (!d) return '';
-                        const [y, m, day] = d.split('-');
-                        const mo = parseInt(m);
-                        if (mo === 1) return `${y} Jan`;
-                        if (mo === 7) return 'Jul';
-                        return '';
-                    };
-                } else if (total <= 280) {
-                    return function(val, idx) {
-                        const d = this.getLabelForValue(val);
-                        if (!d) return '';
-                        const [y, m, day] = d.split('-');
-                        if (m === '01' || (parseInt(m) <= 2 && parseInt(day) <= 14)) return y;
-                        return '';
-                    };
-                } else {
-                    return function(val, idx) {
-                        const d = this.getLabelForValue(val);
-                        if (!d) return '';
-                        const [y, m, day] = d.split('-');
-                        if (m === '01' || (parseInt(m) <= 2 && parseInt(day) <= 14)) return y;
-                        return '';
-                    };
-                }
+                return function(val, idx) {
+                    const d = this.getLabelForValue(val);
+                    if (!d) return null;
+                    const mo = parseInt(d.substring(5, 7));
+                    const day = parseInt(d.substring(8, 10));
+                    if (total <= 170) {
+                        // 3Y: Jan and Jul only
+                        if (mo === 1 && day <= 7) return d.substring(0, 4) + ' Jan';
+                        if (mo === 7 && day <= 7) return 'Jul';
+                        return null;
+                    } else {
+                        // 5Y/ALL: Jan only
+                        if (mo === 1 && day <= 7) return d.substring(0, 4);
+                        return null;
+                    }
+                };
             }
 
             mainChart = new Chart(ctx, {
@@ -756,6 +745,7 @@
                                 color: '#999',
                                 font: { family: 'JetBrains Mono', size: 11 },
                                 autoSkip: false,
+                                maxTicksLimit: 15,
                                 maxRotation: 0,
                                 callback: getTickCallback(totalWeeks)
                             }
