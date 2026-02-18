@@ -1,0 +1,56 @@
+name: Update BTC 200WMA Data
+
+on:
+  schedule:
+    # Run every Monday at 09:00 UTC (18:00 KST)
+    - cron: '0 9 * * 1'
+  workflow_dispatch:  # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install yfinance
+
+      - name: Update BTC price data
+        run: |
+          python -c "
+          import yfinance as yf
+          import csv, os
+          ticker = yf.Ticker('BTC-USD')
+          df = ticker.history(period='max')
+          df = df.reset_index()
+          path = 'data/BTC_USD.csv'
+          with open(path, 'w', newline='') as f:
+              w = csv.writer(f)
+              w.writerow(['Date','Close','High','Low','Open','Volume'])
+              for _, r in df.iterrows():
+                  w.writerow([r['Date'].strftime('%Y-%m-%d'), r['Close'], r['High'], r['Low'], r['Open'], int(r['Volume'] or 0)])
+          print(f'Updated {path}: {len(df)} rows')
+          "
+
+      - name: Calculate 200WMA data
+        run: |
+          python fetch_data.py
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data/
+          git diff --cached --quiet || git commit -m "📊 Update 200WMA data $(date +'%Y-%m-%d')"
+          git push
