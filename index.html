@@ -930,32 +930,63 @@
             window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(text)}`, '_blank');
         }
 
+        function clipCopy(text) {
+            if (window.parent !== window) {
+                window.parent.postMessage({ type: 'copy', text: text }, '*');
+                return Promise.resolve();
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+                return navigator.clipboard.writeText(text).catch(function() { return fallbackCopy(text); });
+            }
+            return fallbackCopy(text);
+        }
+        function fallbackCopy(text) {
+            return new Promise((resolve, reject) => {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
+                document.body.appendChild(ta);
+                ta.focus(); ta.select();
+                try {
+                    const ok = document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    ok ? resolve() : reject(new Error('execCommand failed'));
+                } catch (e) { document.body.removeChild(ta); reject(e); }
+            });
+        }
+
         function shareInstagram() {
-            navigator.clipboard.writeText(SHARE_URL).then(() => {
+            clipCopy(SHARE_URL).then(() => {
                 const btn = document.querySelector('.instagram');
                 const orig = btn.innerHTML;
                 btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 링크 복사됨! 스토리에 붙여넣기';
                 btn.style.borderColor = '#E4405F';
                 btn.style.color = '#E4405F';
                 setTimeout(() => { btn.innerHTML = orig; btn.style.borderColor = ''; btn.style.color = ''; }, 2500);
-            });
+            }).catch(function(){});
         }
 
         function copyLink() {
-            navigator.clipboard.writeText(SHARE_URL).then(() => {
+            clipCopy(SHARE_URL).then(() => {
                 const btn = document.querySelector('.copy-link');
                 const orig = btn.innerHTML;
                 btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 복사됨!';
                 btn.style.borderColor = 'var(--accent-green)';
                 btn.style.color = 'var(--accent-green)';
                 setTimeout(() => { btn.innerHTML = orig; btn.style.borderColor = ''; btn.style.color = ''; }, 2000);
-            });
+            }).catch(function(){});
         }
 
         // ============================================================
         // BOOT
         // ============================================================
         document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+    <script>
+    function sendHeight(){var h=document.documentElement.scrollHeight;window.parent.postMessage({id:'hvBtc200wma',height:h},'*')}
+    window.addEventListener('load',function(){sendHeight();setTimeout(sendHeight,500);setTimeout(sendHeight,1500)});
+    window.addEventListener('resize',sendHeight);
+    new MutationObserver(sendHeight).observe(document.body,{childList:true,subtree:true,attributes:true});
     </script>
 </body>
 </html>
