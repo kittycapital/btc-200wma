@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2026-03-23 10:04 UTC",
+    "generated": "2026-03-30 10:18 UTC",
     "source": "BTC_USD.csv",
     "wma_period": 200,
     "touch_threshold_pct": 5.0,
     "simulation_amount": 10000,
-    "total_weeks": 602,
+    "total_weeks": 603,
     "first_wma_date": "2018-07-15"
   },
   "current": {
-    "price": 68326.73,
-    "wma200": 59258.01,
-    "pct_above_wma": 15.3,
-    "date": "2026-03-29"
+    "price": 67386.38,
+    "wma200": 59433.55,
+    "pct_above_wma": 13.4,
+    "date": "2026-04-05"
   },
   "chart_data": {
     "2014-09-21": {
@@ -2420,8 +2420,12 @@
       "wma200": 59063.6
     },
     "2026-03-29": {
-      "close": 68326.73,
-      "wma200": 59258.01
+      "close": 65954.92,
+      "wma200": 59246.15
+    },
+    "2026-04-05": {
+      "close": 67386.38,
+      "wma200": 59433.55
     }
   },
   "touches": [
