@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2026-06-22 11:00 UTC",
+    "generated": "2026-06-29 10:39 UTC",
     "source": "BTC_USD.csv",
     "wma_period": 200,
     "touch_threshold_pct": 5.0,
     "simulation_amount": 10000,
-    "total_weeks": 615,
+    "total_weeks": 616,
     "first_wma_date": "2018-07-15"
   },
   "current": {
-    "price": 64047.36,
-    "wma200": 62463.01,
-    "pct_above_wma": 2.5,
-    "date": "2026-06-28"
+    "price": 60019.05,
+    "wma200": 62640.6,
+    "pct_above_wma": -4.2,
+    "date": "2026-07-05"
   },
   "chart_data": {
     "2014-09-21": {
@@ -2472,8 +2472,12 @@
       "wma200": 62240.86
     },
     "2026-06-28": {
-      "close": 64047.36,
-      "wma200": 62463.01
+      "close": 59532.34,
+      "wma200": 62440.44
+    },
+    "2026-07-05": {
+      "close": 60019.05,
+      "wma200": 62640.6
     }
   },
   "touches": [
@@ -2558,19 +2562,19 @@
       "price": 63239.52,
       "wma200": 61825.39,
       "pct_from_wma": 2.3,
-      "min_date": "2026-06-21",
-      "min_price": 63237.54,
-      "min_pct": 1.6,
-      "duration_weeks": 4,
-      "below_weeks": 0,
+      "min_date": "2026-06-28",
+      "min_price": 59532.34,
+      "min_pct": -4.7,
+      "duration_weeks": 5,
+      "below_weeks": 2,
       "returns": {
-        "1mo": 1.3,
+        "1mo": -5.1,
         "3mo": null,
         "6mo": null,
         "12mo": null
       },
       "sim_values": {
-        "1mo": 10128,
+        "1mo": 9491,
         "3mo": null,
         "6mo": null,
         "12mo": null
