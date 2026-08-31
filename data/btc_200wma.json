@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2026-08-24 09:48 UTC",
+    "generated": "2026-08-31 16:46 UTC",
     "source": "BTC_USD.csv",
     "wma_period": 200,
     "touch_threshold_pct": 5.0,
     "simulation_amount": 10000,
-    "total_weeks": 624,
+    "total_weeks": 625,
     "first_wma_date": "2018-07-15"
   },
   "current": {
-    "price": 77508.28,
-    "wma200": 64569.47,
-    "pct_above_wma": 20.0,
-    "date": "2026-08-30"
+    "price": 78629.82,
+    "wma200": 64859.6,
+    "pct_above_wma": 21.2,
+    "date": "2026-09-06"
   },
   "chart_data": {
     "2014-09-21": {
@@ -2508,8 +2508,12 @@
       "wma200": 64285.11
     },
     "2026-08-30": {
-      "close": 77508.28,
-      "wma200": 64569.47
+      "close": 77830.29,
+      "wma200": 64571.08
+    },
+    "2026-09-06": {
+      "close": 78629.82,
+      "wma200": 64859.6
     }
   },
   "touches": [
@@ -2601,29 +2605,29 @@
       "below_weeks": 3,
       "returns": {
         "1mo": 0.5,
-        "3mo": 22.6,
+        "3mo": 24.3,
         "6mo": null,
         "12mo": null
       },
       "sim_values": {
         "1mo": 10049,
-        "3mo": 12256,
+        "3mo": 12434,
         "6mo": null,
         "12mo": null
       },
-      "is_current": true
+      "is_current": false
     }
   ],
   "stats": {
     "total_touches": 4,
-    "completed_touches": 3,
+    "completed_touches": 4,
     "hit_rate_12mo": 100,
     "avg_return_12mo": 382.6,
     "avg_return_6mo": 83.2,
-    "avg_return_3mo": 30.8,
-    "avg_return_1mo": 13.2,
+    "avg_return_3mo": 29.1,
+    "avg_return_1mo": 10.0,
     "hit_rate_1mo": 100,
-    "hit_rate_3mo": 67,
+    "hit_rate_3mo": 75,
     "hit_rate_6mo": 67
   }
 }
