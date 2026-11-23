@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "generated": "2026-11-16 19:20 UTC",
+    "generated": "2026-11-23 20:55 UTC",
     "source": "BTC_USD.csv",
     "wma_period": 200,
     "touch_threshold_pct": 5.0,
     "simulation_amount": 10000,
-    "total_weeks": 636,
+    "total_weeks": 637,
     "first_wma_date": "2018-07-15"
   },
   "current": {
-    "price": 64776.46,
-    "wma200": 68183.95,
-    "pct_above_wma": -5.0,
-    "date": "2026-11-22"
+    "price": 61050.52,
+    "wma200": 68352.26,
+    "pct_above_wma": -10.7,
+    "date": "2026-11-29"
   },
   "chart_data": {
     "2014-09-21": {
@@ -2556,8 +2556,12 @@
       "wma200": 67973.67
     },
     "2026-11-22": {
-      "close": 64776.46,
-      "wma200": 68183.95
+      "close": 61161.91,
+      "wma200": 68165.88
+    },
+    "2026-11-29": {
+      "close": 61050.52,
+      "wma200": 68352.26
     }
   },
   "touches": [
@@ -2650,13 +2654,13 @@
       "returns": {
         "1mo": 0.5,
         "3mo": 27.1,
-        "6mo": 2.4,
+        "6mo": -3.5,
         "12mo": null
       },
       "sim_values": {
         "1mo": 10049,
         "3mo": 12706,
-        "6mo": 10243,
+        "6mo": 9654,
         "12mo": null
       },
       "is_current": false
@@ -2667,19 +2671,19 @@
       "price": 65305.06,
       "wma200": 67973.67,
       "pct_from_wma": -3.9,
-      "min_date": "2026-11-22",
-      "min_price": 64776.46,
-      "min_pct": -5.0,
-      "duration_weeks": 2,
-      "below_weeks": 2,
+      "min_date": "2026-11-29",
+      "min_price": 61050.52,
+      "min_pct": -10.7,
+      "duration_weeks": 3,
+      "below_weeks": 3,
       "returns": {
-        "1mo": null,
+        "1mo": -6.5,
         "3mo": null,
         "6mo": null,
         "12mo": null
       },
       "sim_values": {
-        "1mo": null,
+        "1mo": 9349,
         "3mo": null,
         "6mo": null,
         "12mo": null
@@ -2692,11 +2696,11 @@
     "completed_touches": 4,
     "hit_rate_12mo": 100,
     "avg_return_12mo": 382.6,
-    "avg_return_6mo": 63.0,
+    "avg_return_6mo": 61.5,
     "avg_return_3mo": 29.9,
     "avg_return_1mo": 10.0,
     "hit_rate_1mo": 100,
     "hit_rate_3mo": 75,
-    "hit_rate_6mo": 75
+    "hit_rate_6mo": 50
   }
 }
